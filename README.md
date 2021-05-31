@@ -6,6 +6,16 @@
 
 Generating [DingTalk] notification from [Prometheus] [AlertManager] WebHooks.
 
+## 说明
+
+解决了消息长于20000字节的问题。没有考虑效率的问题，但是服务本身报警频率不高，所以可以接受
+
+``` bash
+msg="Failed to send notification to DingTalk" respCode=460101 respMsg="message too long, exceed 20000 bytes"
+```
+
+处理方式是：当消息长于20000字节时，会采取最大限度的分段发送，发送过程中，无论遇到什么问题，最终返回给Prometheus下的AlertManager都是成功的。
+
 ## Install
 
 ### Precompiled binaries

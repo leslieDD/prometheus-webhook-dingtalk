@@ -91,21 +91,23 @@ func (r *DingNotificationBuilder) Build(m *models.WebhookMessage) (*models.DingT
 // msg="Failed to send notification to DingTalk" respCode=460101 respMsg="message too long, exceed 20000 bytes"
 func (r *DingNotificationBuilder) Buildv2(m *models.WebhookMessage) ([][]byte, error) {
 	sendDatas := [][]byte{}
-	data, oriLen, err := r.ResolvedTmpl(m)
+	dataOne, oriLen, err := r.ResolvedTmpl(m)
 	if err != nil {
 		return nil, err
 	}
 	if oriLen < MAX_MESSAGE_LENGTH {
-		sendDatas = append(sendDatas, data)
+		sendDatas = append(sendDatas, dataOne)
 		return sendDatas, nil
 	}
 	alerts := m.Alerts[:]
 	lastIndex := 0
 	lastData := []byte{}
+	data := []byte{}
+	var l int
 
 	for index := 1; index <= len(alerts); index++ {
 		m.Alerts = alerts[lastIndex:index]
-		data, l, err := r.ResolvedTmpl(m)
+		data, l, err = r.ResolvedTmpl(m)
 		if err != nil {
 			return nil, err
 		}
@@ -124,7 +126,7 @@ func (r *DingNotificationBuilder) Buildv2(m *models.WebhookMessage) ([][]byte, e
 		}
 	}
 	if len(lastData) != 0 {
-		sendDatas = append(sendDatas, data)
+		sendDatas = append(sendDatas, lastData)
 	}
 	return sendDatas, nil
 }
