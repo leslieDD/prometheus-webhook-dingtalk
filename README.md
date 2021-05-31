@@ -16,6 +16,12 @@ msg="Failed to send notification to DingTalk" respCode=460101 respMsg="message t
 
 处理方式是：当消息长于20000字节时，会采取最大限度的分段发送，发送过程中，无论遇到什么问题，最终返回给Prometheus下的AlertManager都是成功的。
 
+更新的默认模板的配置【因为改contrib目录下的模板一直不生效】，默认模板的配置在目录：
+
+```shell
+template/default.tmpl
+```
+
 ## Install
 
 ### Precompiled binaries
