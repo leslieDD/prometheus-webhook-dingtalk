@@ -85,24 +85,38 @@ func (api *API) serveSend(w http.ResponseWriter, r *http.Request) {
 	}
 
 	builder := notifier.NewDingNotificationBuilder(tmpl, conf, &target)
-	notification, err := builder.Build(&promMessage)
+	// notification, err := builder.Build(&promMessage)
+	sendDatas, err := builder.Buildv2(&promMessage)
 	if err != nil {
 		level.Error(logger).Log("msg", "Failed to build notification", "err", err)
 		http.Error(w, "Bad Request", http.StatusBadRequest)
 		return
 	}
 
-	robotResp, err := notifier.SendNotification(notification, httpClient, &target)
-	if err != nil {
-		level.Error(logger).Log("msg", "Failed to send notification", "err", err)
-		http.Error(w, "Bad Request", http.StatusBadRequest)
-		return
-	}
+	if len(sendDatas) == 1 {
+		robotResp, err := notifier.SendNotificationV2(sendDatas[0], httpClient, &target)
+		if err != nil {
+			level.Error(logger).Log("msg", "Failed to send notification", "err", err)
+			http.Error(w, "Bad Request", http.StatusBadRequest)
+			return
+		}
 
-	if robotResp.ErrorCode != 0 {
-		level.Error(logger).Log("msg", "Failed to send notification to DingTalk", "respCode", robotResp.ErrorCode, "respMsg", robotResp.ErrorMessage)
-		http.Error(w, "Unable to talk to DingTalk", http.StatusBadRequest)
-		return
+		if robotResp.ErrorCode != 0 {
+			level.Error(logger).Log("msg", "Failed to send notification to DingTalk", "respCode", robotResp.ErrorCode, "respMsg", robotResp.ErrorMessage)
+			http.Error(w, "Unable to talk to DingTalk", http.StatusBadRequest)
+			return
+		}
+	} else {
+		for _, data := range sendDatas {
+			robotResp, err := notifier.SendNotificationV2(data, httpClient, &target)
+			if err != nil {
+				level.Error(logger).Log("msg", "Failed to send notification", "err", err)
+			}
+
+			if robotResp.ErrorCode != 0 {
+				level.Error(logger).Log("msg", "Failed to send notification to DingTalk", "respCode", robotResp.ErrorCode, "respMsg", robotResp.ErrorMessage)
+			}
+		}
 	}
 
 	io.WriteString(w, "OK")
