@@ -1,0 +1,96 @@
+Script started on 2021-05-29 16:22:47+08:00
+]0;root@prometheus:~/prometheus-webhook-dingtalk[root@prometheus prometheus-webhook-dingtalk]# ls
+CHANGELOG.md  [0m[01;34mconfig[0m              config.yml  Dockerfile  [01;34mexamples[0m  go.sum    LICENSE  Makefile         [01;34mnotifier[0m  [01;32mprometheus-webhook-dingtalk[0m  [01;34mscripts[0m   typescript  VERSION
+[01;34mcmd[0m           config.example.yml  [01;34mcontrib[0m     [01;34mdocs[0m        go.mod    [01;34minternal[0m  main.go  Makefile.common  [01;34mpkg[0m       README.md                    [01;34mtemplate[0m  [01;34mvendor[0m      [01;34mweb[0m
+]0;root@prometheus:~/prometheus-webhook-dingtalk[root@prometheus prometheus-webhook-dingtalk]# cd scripts/
+]0;root@prometheus:~/prometheus-webhook-dingtalk/scripts[root@prometheus scripts]# ls
+build_react_app.sh  errcheck_excludes.txt
+]0;root@prometheus:~/prometheus-webhook-dingtalk/scripts[root@prometheus scripts]# chmod +x build_react_app.sh 
+]0;root@prometheus:~/prometheus-webhook-dingtalk/scripts[root@prometheus scripts]# ls
+[0m[01;32mbuild_react_app.sh[0m  errcheck_excludes.txt
+]0;root@prometheus:~/prometheus-webhook-dingtalk/scripts[root@prometheus scripts]# ./build_react_app.sh 
+/usr/bin/env: ‘bash\r’: No such file or directory
+]0;root@prometheus:~/prometheus-webhook-dingtalk/scripts[root@prometheus scripts]# vim build_react_app.sh 
+[?2004h[?1049h[22;0;0t[?1h=[?2004h[1;32r[?12h[?12l[27m[23m[29m[m[H[2J[?25l[32;1H"build_react_app.sh" [dos] 18L, 333C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1H[34m#!/usr/bin/env bash
+#
+# Build React web UI.
+# Run from repository root.[m
+[33mset[m[36m [m[35m-e[m
+[33mset[m[36m [m[35m-u[m
+
+[33mif ![m [35m[[[m [33m"[m[35m$0[m[33m"[m [33m=~[m [33m"[m[31mscripts/build_react_app.sh[m[33m"[m [35m]][m[33m;[m [33mthen[9;9Hecho[m[31m [m[33m"[m[31mmust be run from repository root[m[33m"[10;9Hexit[m [31m255[m
+[33mfi
+
+cd[m web/ui/react-app
+
+[33mecho[m[31m [m[33m"[m[31mbuilding React app[m[33m"[m
+[36mPUBLIC_URL[m=. yarn build
+[33mrm[m [35m-rf[m ../static/react
+[33mmv[m build ../static/react
+[1m[34m~                                                                                                                                                                                  [20;1H~                                                                                                                                                                                  [21;1H~                                                                                                                                                                                  [22;1H~                                                                                                                                                                                  [23;1H~                                                                                                                                                                                  [24;1H~                                                                                                                                                                                  [25;1H~                                                                                                                                                                                  [26;1H~                                                                                                                                                                                  [27;1H~                                                                                                                                                                                  [28;1H~                                                                                                                                                                                  [29;1H~                                                                                                                                                                                  [30;1H~                                                                                                                                                                                  [31;1H~                                                                                                                                                                                  [m[32;162H1,1[11CAll[1;1H[?25hP+q436f\P+q6b75\P+q6b64\P+q6b72\P+q6b6c\P+q2332\P+q2334\P+q2569\P+q2a37\P+q6b31\[?12$pP+q6b32\P+q6b33\P+q6b34\P+q6b35\P+q6b36\[?25l[32;152H^[[1;1H[32;154HP[1;1H[32;155H0[1;1H[32;156H+[1;1H[32;157Hr[1;1H[32;158H2[1;1H[32;159H3[1;1H[32;160H3[1;1H[32;161H2[1;1H[32;152H          [1;1HP+q6b37\P+q6b38\P+q6b39\P+q6b3b\P+q4631\[?25hP+q4632\P+q2531\P+q2638\P+q6b62\P+q6b49\P+q6b44\[?25l[32;152H^[[1;1H[32;154HP[1;1H[32;155H0[1;1H[32;156H+[1;1H[32;157Hr[1;1H[32;152H      [1;1HP+q6b68\P+q4037\P+q6b50\P+q6b4e\[?25hP+q4b31\P+q4b33\P+q4b34\P+q4b35\P+q6b42\[?25l[32;152H^[[1;1H[32;152H  [1;1H[?25h[?25l[32;152Hd[1;1H[?25h[?25l[32;153Hd[1;1H[32;152H  [1;1H[1;31r[31;1H
+[1;32r[31;1H[1m[34m~                                                                                                                                                                                  [m[32;1H[K[32;162H1,1[11CAll[1;1H[?25h[?25l[32;152H:[1;1H[32;152H[K[32;1H:[?2004h[?25hw[?25l[?25h[?25l"build_react_app.sh" [dos] 17L, 312C written[1;1H[32;162H1,1[11CAll[32;162H[K[32;162H1,1[11CAll[1;1H[?25h[?25l[32;152Hi[1;1H[32;152H [1;1H[32;1H[1m-- INSERT --[m[32;13H[K[32;162H1,1[11CAll[1;1H[?25h[?25l[2;31r[2;1H[L[1;32r[1;1H[K[2;1H[34m#[m[32;162H[K[32;162H2,1[11CAll[2;1H[?25h[?25l[32;162H1[1;1H[?25h[?25l[34m#[m[32;164H2[1;2H[?25h[?25l[34m![m[32;164H3[1;3H[?25h[?25l[34m/[m[32;164H4[1;4H[?25h[?25l[34mb[m[32;164H5[1;5H[?25h[?25l[34mi[m[32;164H6[1;6H[?25h[?25l[34mn[m[32;164H7[1;7H[?25h[?25l[34m/[m[32;164H8[1;8H[?25h[?25l[34mb[m[32;164H9[1;9H[?25h[?25l[34ma[m[32;164H10[1;10H[?25h[?25l[34ms[m[32;165H1[1;11H[?25h[?25l[34mh[m[32;165H2[1;12H[?25h[32;1H[K[1;11H[?25l[32;152H^[[1;11H[32;152H  [1;12H[32;162H1,11[10CAll[1;11H[?25h[?25l[32;152H:[1;11H[32;152H[K[32;1H:[?2004h[?25hw[?25l[?25hq[?25l[?25h[?25l[?2004l"build_react_app.sh" [dos] 18L, 325C written
+[?2004l[?1l>[?25h[?1049l[23;0;0t]0;root@prometheus:~/prometheus-webhook-dingtalk/scripts[root@prometheus scripts]# ls
+[0m[01;32mbuild_react_app.sh[0m  errcheck_excludes.txt
+]0;root@prometheus:~/prometheus-webhook-dingtalk/scripts[root@prometheus scripts]# .[K/[K./build_react_app.sh 
+bash: ./build_react_app.sh: /bin/bash^M: bad interpreter: No such file or directory
+]0;root@prometheus:~/prometheus-webhook-dingtalk/scripts[root@prometheus scripts]# dos[Ks2unix ./build_react_app.sh 
+dos2unix: converting file ./build_react_app.sh to Unix format...
+]0;root@prometheus:~/prometheus-webhook-dingtalk/scripts[root@prometheus scripts]# ls
+[0m[01;32mbuild_react_app.sh[0m  errcheck_excludes.txt
+]0;root@prometheus:~/prometheus-webhook-dingtalk/scripts[root@prometheus scripts]# ./build_react_app.sh 
+must be run from repository root
+]0;root@prometheus:~/prometheus-webhook-dingtalk/scripts[root@prometheus scripts]# ls
+[0m[01;32mbuild_react_app.sh[0m  errcheck_excludes.txt
+]0;root@prometheus:~/prometheus-webhook-dingtalk/scripts[root@prometheus scripts]# cd ..
+]0;root@prometheus:~/prometheus-webhook-dingtalk[root@prometheus prometheus-webhook-dingtalk]# ls
+CHANGELOG.md  [0m[01;34mconfig[0m              config.yml  Dockerfile  [01;34mexamples[0m  go.sum    LICENSE  Makefile         [01;34mnotifier[0m  [01;32mprometheus-webhook-dingtalk[0m  [01;34mscripts[0m   typescript  VERSION
+[01;34mcmd[0m           config.example.yml  [01;34mcontrib[0m     [01;34mdocs[0m        go.mod    [01;34minternal[0m  main.go  Makefile.common  [01;34mpkg[0m       README.md                    [01;34mtemplate[0m  [01;34mvendor[0m      [01;34mweb[0m
+]0;root@prometheus:~/prometheus-webhook-dingtalk[root@prometheus prometheus-webhook-dingtalk]# ./bu[K[Kscripts/build_react_app.sh 
+building React app
+./scripts/build_react_app.sh: line 16: yarn: command not found
+]0;root@prometheus:~/prometheus-webhook-dingtalk[root@prometheus prometheus-webhook-dingtalk]# yu [Km install yarn
+Last metadata expiration check: 1:36:31 ago on Sat 29 May 2021 02:47:12 PM CST.
+No match for argument: [1myarn(B[m
+Error: Unable to find a match: yarn
+]0;root@prometheus:~/prometheus-webhook-dingtalk[root@prometheus prometheus-webhook-dingtalk]# yum install node 
+Last metadata expiration check: 1:36:38 ago on Sat 29 May 2021 02:47:12 PM CST.
+No match for argument: [1mnode(B[m
+Error: Unable to find a match: node
+]0;root@prometheus:~/prometheus-webhook-dingtalk[root@prometheus prometheus-webhook-dingtalk]# yum install node [Kjs
+Last metadata expiration check: 1:36:42 ago on Sat 29 May 2021 02:47:12 PM CST.
+Dependencies resolved.
+===================================================================================================================================================================================
+ Package                                Architecture                 Version                                                                 Repository                       Size
+===================================================================================================================================================================================
+Installing:
+ [1m[32mnodejs                                (B[m x86_64                       1:10.24.0-1.module_el8.3.0+717+fa496f1d                                 AppStream                       8.8 M
+Installing dependencies:
+ [1m[32mnpm                                   (B[m x86_64                       1:6.14.11-1.10.24.0.1.module_el8.3.0+717+fa496f1d                       AppStream                       3.7 M
+Installing weak dependencies:
+ [1m[32mnodejs-full-i18n                      (B[m x86_64                       1:10.24.0-1.module_el8.3.0+717+fa496f1d                                 AppStream                       7.3 M
+Enabling module streams:
+ nodejs                                                              10                                                                                                           
+
+Transaction Summary
+===================================================================================================================================================================================
+Install  3 Packages
+
+Total download size: 20 M
+Installed size: 71 M
+Is this ok [y/N]: ^COperation aborted.
+]0;root@prometheus:~/prometheus-webhook-dingtalk[root@prometheus prometheus-webhook-dingtalk]# ls
+CHANGELOG.md  [0m[01;34mconfig[0m              config.yml  Dockerfile  [01;34mexamples[0m  go.sum    LICENSE  Makefile         [01;34mnotifier[0m  [01;32mprometheus-webhook-dingtalk[0m  [01;34mscripts[0m   typescript  VERSION
+[01;34mcmd[0m           config.example.yml  [01;34mcontrib[0m     [01;34mdocs[0m        go.mod    [01;34minternal[0m  main.go  Makefile.common  [01;34mpkg[0m       README.md                    [01;34mtemplate[0m  [01;34mvendor[0m      [01;34mweb[0m
+]0;root@prometheus:~/prometheus-webhook-dingtalk[root@prometheus prometheus-webhook-dingtalk]# curl -fsSL https://rpm.nodesource.com/setup_14.x | bash -
+
+## Installing the NodeSource Node.js 14.x repo...
+
+
+## Inspecting system...
+
++ rpm -q --whatprovides redhat-release || rpm -q --whatprovides centos-release || rpm -q --whatprovides cloudlinux-release || rpm -q --whatprovides sl-release
++ uname -m
+
+## Confirming "el8-x86_64" is supported...
+
++ curl -
